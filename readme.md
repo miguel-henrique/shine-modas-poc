@@ -1,21 +1,45 @@
-# Next.js Playground
+# Shine Modas - Sistema de Gestão de Estoque
 
-This playground is used by the DX team to explore, test, and demo new Next.js features. It serves as a starting point for writing documentation and helps us understand features, identify bugs, and provide feedback to the Next.js team.
+PoC (Proof of Concept) de sistema de gerenciamento de estoque e comissões para a Shine Modas - Loja de Moda Plus Size.
 
-## Running Locally
+## Sobre o Projeto
 
-1. Install dependencies:
+Este projeto é uma prova de conceito desenvolvida para a matéria de Engenharia de Plataforma, demonstrando conceitos de:
+
+- CI/CD com GitHub e Vercel
+- SaaS (Software as a Service)
+- Cloud Computing
+- Arquitetura moderna com Next.js
+
+## Funcionalidades
+
+- 📊 Dashboard de gestão de estoque
+- 👗 Catálogo de produtos plus size
+- 📦 Controle de inventário
+- 💰 Gestão de comissões (mock)
+
+## Executando Localmente
+
+1. Instale as dependências:
 
 ```sh
 pnpm install
 ```
 
-2. Start the dev server:
+2. Inicie o servidor de desenvolvimento:
 
 ```sh
 pnpm dev
 ```
 
-## Documentation
+## Tecnologias
+
+- Next.js 16 (App Router)
+- React 19
+- TypeScript
+- Tailwind CSS
+- Vercel (Deploy e CI/CD)
+
+## Documentação
 
 https://nextjs.org/docs

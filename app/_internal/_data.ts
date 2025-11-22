@@ -9,6 +9,10 @@ export type Product = {
   image: string;
   category: string;
   price: number;
+  stock: number;
+  minStock: number;
+  sizes: string[];
+  supplier: string;
 };
 
 export type Section = {
@@ -36,178 +40,205 @@ export type Demo = {
 export type DemoCategory = { name: string; items: Demo[] };
 
 const sections: Section[] = [
-  { id: '1', name: 'Clothing', slug: 'clothing', categories: ['1', '2', '3'] },
+  { id: '1', name: 'Roupas Femininas', slug: 'feminino', categories: ['1', '2', '3'] },
   {
     id: '2',
-    name: 'Electronics',
-    slug: 'electronics',
-    categories: ['4', '5', '6'],
+    name: 'Roupas Masculinas',
+    slug: 'masculino',
+    categories: ['4', '5'],
   },
-  { id: '3', name: 'Sports', slug: 'sports', categories: ['7', '8', '9'] },
+  { id: '3', name: 'Acessórios', slug: 'acessorios', categories: ['6'] },
 ];
 
 const categories: Category[] = [
-  { id: '1', name: 'Tops', slug: 'tops', section: '1', products: ['1'] },
-  { id: '2', name: 'Shorts', slug: 'shorts', section: '1', products: ['2'] },
-  { id: '3', name: 'Shoes', slug: 'shoes', section: '1', products: ['3'] },
-  { id: '4', name: 'Phones', slug: 'phones', section: '2', products: ['4'] },
-  { id: '5', name: 'Laptops', slug: 'laptops', section: '2', products: ['5'] },
-  { id: '6', name: 'Tablets', slug: 'tablets', section: '2', products: ['6'] },
-  { id: '7', name: 'Balls', slug: 'balls', section: '3', products: ['7'] },
-  {
-    id: '8',
-    name: 'Equipment',
-    slug: 'equipment',
-    section: '3',
-    products: ['8'],
-  },
-  {
-    id: '9',
-    name: 'Accessories',
-    slug: 'accessories',
-    section: '3',
-    products: ['9'],
-  },
+  { id: '1', name: 'Blusas', slug: 'blusas', section: '1', products: ['1'] },
+  { id: '2', name: 'Vestidos', slug: 'vestidos', section: '1', products: ['2'] },
+  { id: '3', name: 'Calças', slug: 'calcas', section: '1', products: ['3'] },
+  { id: '4', name: 'Camisas', slug: 'camisas', section: '2', products: ['4', '5'] },
+  { id: '5', name: 'Bermudas', slug: 'bermudas', section: '2', products: ['6'] },
+  { id: '6', name: 'Bolsas', slug: 'bolsas', section: '3', products: ['7', '8', '9'] },
 ];
 
 const products: Product[] = [
-  { id: '1', name: 'Top', image: 'top.png', category: '1', price: 29.99 },
-  { id: '2', name: 'Shorts', image: 'shorts.png', category: '2', price: 39.99 },
-  { id: '3', name: 'Shoes', image: 'shoes.png', category: '3', price: 89.99 },
-
-  { id: '4', name: 'Phone', image: 'phone.png', category: '4', price: 699.99 },
+  { 
+    id: '1', 
+    name: 'Blusa Floral Plus Size', 
+    image: 'top.png', 
+    category: '1', 
+    price: 89.90,
+    stock: 15,
+    minStock: 5,
+    sizes: ['GG', 'XG', 'XXG'],
+    supplier: 'Fornecedor A'
+  },
+  { 
+    id: '2', 
+    name: 'Vestido Longo Elegante', 
+    image: 'shorts.png', 
+    category: '2', 
+    price: 159.90,
+    stock: 3,
+    minStock: 5,
+    sizes: ['GG', 'XG', 'XXG', 'XXXG'],
+    supplier: 'Fornecedor B'
+  },
+  { 
+    id: '3', 
+    name: 'Calça Jeans Plus Size', 
+    image: 'shoes.png', 
+    category: '3', 
+    price: 129.90,
+    stock: 22,
+    minStock: 10,
+    sizes: ['50', '52', '54', '56'],
+    supplier: 'Fornecedor A'
+  },
+  { 
+    id: '4', 
+    name: 'Camisa Social Masculina', 
+    image: 'phone.png', 
+    category: '4', 
+    price: 99.90,
+    stock: 8,
+    minStock: 5,
+    sizes: ['GG', 'XG', 'XXG'],
+    supplier: 'Fornecedor C'
+  },
   {
     id: '5',
-    name: 'Laptop',
+    name: 'Camisa Polo Plus Size',
     image: 'laptop.png',
-    category: '5',
-    price: 1299.99,
+    category: '4',
+    price: 79.90,
+    stock: 18,
+    minStock: 8,
+    sizes: ['GG', 'XG', 'XXG'],
+    supplier: 'Fornecedor C'
   },
   {
     id: '6',
-    name: 'Tablet',
+    name: 'Bermuda Sarja Masculina',
     image: 'tablet.png',
-    category: '6',
-    price: 499.99,
+    category: '5',
+    price: 89.90,
+    stock: 12,
+    minStock: 6,
+    sizes: ['50', '52', '54', '56', '58'],
+    supplier: 'Fornecedor B'
   },
   {
     id: '7',
-    name: 'Basketball',
+    name: 'Bolsa Tiracolo Feminina',
     image: 'balls.png',
-    category: '7',
-    price: 24.99,
+    category: '6',
+    price: 119.90,
+    stock: 25,
+    minStock: 10,
+    sizes: ['Único'],
+    supplier: 'Fornecedor D'
   },
   {
     id: '8',
-    name: 'Weights',
+    name: 'Bolsa Grande Executiva',
     image: 'weights.png',
-    category: '8',
-    price: 149.99,
+    category: '6',
+    price: 149.90,
+    stock: 7,
+    minStock: 5,
+    sizes: ['Único'],
+    supplier: 'Fornecedor D'
   },
-  { id: '9', name: 'Gloves', image: 'gloves.png', category: '9', price: 19.99 },
+  { 
+    id: '9', 
+    name: 'Bolsa Casual Plus', 
+    image: 'gloves.png', 
+    category: '6', 
+    price: 89.90,
+    stock: 2,
+    minStock: 5,
+    sizes: ['Único'],
+    supplier: 'Fornecedor D'
+  },
 ];
 
 const demos = [
   {
-    name: 'Layouts',
+    name: 'Gestão',
     items: [
       {
         slug: 'layouts',
-        name: 'Nested Layouts',
-        description: 'Create UI that is shared across routes',
+        name: 'Produtos',
+        description: 'Visualize e gerencie o catálogo de produtos',
       },
-      {
-        slug: 'route-groups',
-        name: 'Route Groups',
-        description: 'Organize routes without affecting URL paths',
-      },
-      {
-        slug: 'parallel-routes',
-        name: 'Parallel Routes',
-        description: 'Render multiple pages in the same layout',
-      },
-    ],
-  },
-  {
-    name: 'File Conventions',
-    items: [
       {
         slug: 'loading',
-        name: 'Loading',
-        description:
-          'Create meaningful Loading UI for specific parts of an app',
-      },
-      {
-        slug: 'error',
-        name: 'Error',
-        description: 'Create Error UI for specific parts of an app',
-      },
-      {
-        slug: 'not-found',
-        name: 'Not Found',
-        description: 'Create Not Found UI for specific parts of an app',
-      },
-    ],
-  },
-  {
-    name: 'Caching',
-    items: [
-      {
-        slug: 'cached-routes',
-        name: 'Cached Route Segments',
-        nav_title: 'Cached Routes',
-        description: 'Cache the rendered output of a route segment',
-      },
-      {
-        slug: 'cached-components',
-        name: 'Cached React Server Components',
-        nav_title: 'Cached Components',
-        description:
-          'Cache the rendered output of an individual React Server Component',
-      },
-      {
-        slug: 'cached-functions',
-        name: 'Cached Functions',
-        description: 'Cache the computed result of a regular function',
-      },
-      {
-        slug: 'remote-cache',
-        name: 'Remote Cache',
-        description:
-          'Cache data at runtime with use cache: remote in dynamic contexts',
-      },
-      {
-        slug: 'private-cache',
-        name: 'Private Cache',
-        description:
-          'Cache user-specific data with use cache: private using cookies and headers',
-      },
-    ],
-  },
-  {
-    name: 'APIs',
-    items: [
-      {
-        slug: 'use-link-status',
-        name: 'useLinkStatus',
-        description: 'Create inline visual feedback for link interactions',
-      },
-    ],
-  },
-  {
-    name: 'Misc',
-    items: [
-      {
-        slug: 'view-transitions',
-        name: 'View Transitions',
-        description:
-          'Use animations to help users understand the relationship between the two views',
+        name: 'Estoque',
+        description: 'Controle de inventário e alertas de estoque baixo',
       },
       {
         slug: 'context',
-        name: 'Client Context',
-        description:
-          'Pass context between Client Components that cross Server/Client Component boundary',
+        name: 'Comissões',
+        description: 'Acompanhe comissões de vendas e relatórios',
+      },
+    ],
+  },
+  {
+    name: 'Recursos Técnicos (Next.js)',
+    items: [
+      {
+        slug: 'cached-components',
+        name: 'Cache de Componentes',
+        description: 'Exemplo de cache com React Server Components',
+      },
+      {
+        slug: 'cached-functions',
+        name: 'Cache de Funções',
+        description: 'Exemplo de cache de funções',
+      },
+      {
+        slug: 'cached-routes',
+        name: 'Cache de Rotas',
+        description: 'Exemplo de cache de segmentos de rota',
+      },
+      {
+        slug: 'view-transitions',
+        name: 'Transições',
+        description: 'Animações entre páginas com View Transitions API',
+      },
+      {
+        slug: 'route-groups',
+        name: 'Grupos de Rotas',
+        description: 'Organização de rotas sem afetar URLs',
+      },
+      {
+        slug: 'parallel-routes',
+        name: 'Rotas Paralelas',
+        description: 'Renderização de múltiplas páginas no mesmo layout',
+      },
+      {
+        slug: 'not-found',
+        name: 'Página 404',
+        description: 'Tratamento de páginas não encontradas',
+      },
+      {
+        slug: 'error',
+        name: 'Tratamento de Erros',
+        description: 'Gerenciamento de erros da aplicação',
+      },
+      {
+        slug: 'use-link-status',
+        name: 'Status de Links',
+        description: 'Feedback visual para interações com links',
+      },
+      {
+        slug: 'remote-cache',
+        name: 'Cache Remoto',
+        description: 'Cache de dados em contextos dinâmicos',
+      },
+      {
+        slug: 'private-cache',
+        name: 'Cache Privado',
+        description: 'Cache de dados específicos do usuário',
       },
     ],
   },

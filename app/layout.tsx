@@ -14,15 +14,15 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: { default: 'Next.js Playground', template: '%s | Next.js Playground' },
+  title: { default: 'Shine Modas - Gestão de Estoque', template: '%s | Shine Modas' },
   metadataBase: new URL('https://app-router.vercel.app'),
   description:
-    'A playground to explore Next.js features such as nested layouts, instant loading states, streaming, and component level data fetching.',
+    'Sistema de gerenciamento de estoque e comissões para a Shine Modas - Moda Plus Size.',
   openGraph: {
-    title: 'Next.js Playground',
+    title: 'Shine Modas - Gestão de Estoque',
     description:
-      'A playground to explore Next.js features such as nested layouts, instant loading states, streaming, and component level data fetching.',
-    images: [`/api/og?title=Next.js Playground`],
+      'Sistema de gerenciamento de estoque e comissões para a Shine Modas - Moda Plus Size.',
+    images: [`/api/og?title=Shine Modas`],
   },
   twitter: { card: 'summary_large_image' },
 };

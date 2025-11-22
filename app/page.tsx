@@ -76,21 +76,21 @@ export default function Page() {
         )}
       </Boundary>
 
-      {/* Menu de Navegação */}
+      {/* Menu de Navegação - Apenas Gestão */}
       <Boundary
-        label="Menu"
+        label="Menu Principal"
         animateRerendering={false}
         kind="solid"
         className="flex flex-col gap-9"
       >
-        {demos.map((section) => {
+        {demos.filter(section => section.name === 'Gestão').map((section) => {
           return (
             <div key={section.name} className="flex flex-col gap-3">
               <div className="font-mono text-xs font-semibold tracking-wider text-gray-700 uppercase">
                 {section.name}
               </div>
 
-              <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
+              <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
                 {section.items.map((item) => {
                   return (
                     <Link
@@ -114,6 +114,13 @@ export default function Page() {
             </div>
           );
         })}
+
+        {/* Link para recursos técnicos */}
+        <div className="border-t border-gray-800 pt-4">
+          <p className="text-xs text-gray-600">
+            💡 Recursos técnicos e demonstrações Next.js disponíveis no menu lateral
+          </p>
+        </div>
       </Boundary>
     </div>
   );

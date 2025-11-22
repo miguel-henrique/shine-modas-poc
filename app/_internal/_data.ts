@@ -183,7 +183,7 @@ const demos = [
     ],
   },
   {
-    name: 'Demonstrações Next.js',
+    name: 'Recursos Técnicos (Next.js)',
     items: [
       {
         slug: 'cached-components',
@@ -191,9 +191,54 @@ const demos = [
         description: 'Exemplo de cache com React Server Components',
       },
       {
+        slug: 'cached-functions',
+        name: 'Cache de Funções',
+        description: 'Exemplo de cache de funções',
+      },
+      {
+        slug: 'cached-routes',
+        name: 'Cache de Rotas',
+        description: 'Exemplo de cache de segmentos de rota',
+      },
+      {
         slug: 'view-transitions',
         name: 'Transições',
         description: 'Animações entre páginas com View Transitions API',
+      },
+      {
+        slug: 'route-groups',
+        name: 'Grupos de Rotas',
+        description: 'Organização de rotas sem afetar URLs',
+      },
+      {
+        slug: 'parallel-routes',
+        name: 'Rotas Paralelas',
+        description: 'Renderização de múltiplas páginas no mesmo layout',
+      },
+      {
+        slug: 'not-found',
+        name: 'Página 404',
+        description: 'Tratamento de páginas não encontradas',
+      },
+      {
+        slug: 'error',
+        name: 'Tratamento de Erros',
+        description: 'Gerenciamento de erros da aplicação',
+      },
+      {
+        slug: 'use-link-status',
+        name: 'Status de Links',
+        description: 'Feedback visual para interações com links',
+      },
+      {
+        slug: 'remote-cache',
+        name: 'Cache Remoto',
+        description: 'Cache de dados em contextos dinâmicos',
+      },
+      {
+        slug: 'private-cache',
+        name: 'Cache Privado',
+        description: 'Cache de dados específicos do usuário',
       },
     ],
   },

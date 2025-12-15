@@ -24,7 +24,7 @@ export default function Page() {
       >
         <div>
           <h1 className="text-2xl font-bold text-gray-100">
-            Bem-vindo ao Shine Modas
+            Bem-vindo ao Shine Modas - Sistema de Gestão de Estoque
           </h1>
           <p className="mt-1 text-sm text-gray-400">
             Sistema de Gestão de Estoque - Moda Plus Size

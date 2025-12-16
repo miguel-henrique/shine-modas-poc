@@ -1,7 +1,7 @@
 import db from '#/lib/db';
 import { Boundary } from '#/ui/boundary';
 import { ProductCard } from '#/ui/product-card';
-import { cacheTag } from 'next/cache';
+
 import Link from 'next/link';
 import SessionButton from './session-button';
 import ProductLink from './product-link';
@@ -83,17 +83,13 @@ export function ProductListSkeleton() {
 
 async function getProducts() {
   'use cache';
-  cacheTag('products');
 
   // DEMO: Add a delay to simulate a slow data request
   await new Promise((resolve) => setTimeout(resolve, 1000));
 
   const products = await db.product.findMany({ limit: 4 });
 
-  // Tag each product for targeted invalidation
-  for (const product of products) {
-    cacheTag(`product-${product.id}`);
-  }
+
 
   return products;
 }

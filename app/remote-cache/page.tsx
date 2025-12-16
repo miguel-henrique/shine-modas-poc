@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import db from '#/lib/db';
 import { Boundary } from '#/ui/boundary';
 import { ProductCard } from '#/ui/product-card';
-import { cacheTag } from 'next/cache';
+
 import { connection } from 'next/server';
 
 export default async function Page() {
@@ -47,19 +47,13 @@ async function ProductList() {
 
 async function getData() {
   'use cache';
-  cacheTag('products');
 
   // DEMO: Add a delay to simulate a slow data request
   await new Promise((resolve) => setTimeout(resolve, 1000));
 
   const products = await db.product.findMany({ limit: 9 });
 
-  // We tag this cache entry with each of the returned products so that if any
-  // of the products are updated, this will invalidate the cache entry for the
-  // entire list of products.
-  for (const product of products) {
-    cacheTag(`product-${product.id}`);
-  }
+
 
   return products;
 }
@@ -107,7 +101,7 @@ async function getProductPrice(productId: string) {
   // add a specific tag for the product price so that if only the price is
   // updated, this will invalidate the cache entry for this product price, not
   // the entire product.
-  cacheTag(`product-price-${productId}`, `product-${productId}`);
+
 
   // DEMO: Add a delay to simulate a database query
   await new Promise((resolve) => setTimeout(resolve, 1000));

@@ -12,6 +12,9 @@ const nextConfig: NextConfig = {
     prerenderEarlyExit: false,
     routerBFCache: true,
     useCache: true,
+    cacheHandlers: {
+      private: 'memory',
+    },
   },
 };
 

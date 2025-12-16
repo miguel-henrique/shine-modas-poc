@@ -2,7 +2,6 @@ import { Suspense } from 'react';
 import db from '#/lib/db';
 import { Boundary } from '#/ui/boundary';
 import { ProductCard } from '#/ui/product-card';
-import { cacheLife, cacheTag } from 'next/cache';
 import { cookies } from 'next/headers';
 import { getPersonalizedRecommendations } from '../../../_components/recommendations';
 import { notFound } from 'next/navigation';
@@ -10,13 +9,6 @@ import { ProductDetails } from '#/app/private-cache/_components/product-detail';
 import Link from 'next/link';
 import { ChevronLeftIcon } from '@heroicons/react/24/solid';
 
-// CRITICAL: This enables runtime prefetching!
-export const unstable_prefetch = {
-  mode: 'runtime',
-  samples: [
-    { params: { id: '1' }, cookies: [{ name: 'session-id', value: '1' }] },
-  ],
-};
 
 export default async function Page({
   params,
@@ -53,8 +45,11 @@ export default async function Page({
   );
 }
 
+
 async function Recommendations({ productId }: { productId: string }) {
-  const recommendations = await getRecommendations(productId);
+  // cookies() deve ser chamado fora de 'use cache'
+  const sessionId = (await cookies()).get('session-id')?.value || 'guest';
+  const recommendations = await getRecommendations(productId, sessionId);
 
   return (
     <Boundary
@@ -81,18 +76,11 @@ async function Recommendations({ productId }: { productId: string }) {
 }
 
 // Private cache - RUNTIME PREFETCHABLE!
-async function getRecommendations(productId: string) {
-  'use cache: private';
-  cacheTag(`recommendations-${productId}`);
-  cacheLife({ stale: 60 }); // 60s stale time (≥30s required for runtime prefetch)
-
-  // Can call cookies() inside private cache!
-  const sessionId = (await cookies()).get('session-id')?.value || 'guest';
-
+async function getRecommendations(productId: string, sessionId: string) {
+  'use cache';
   // Get personalized recommendations
   return getPersonalizedRecommendations(productId, sessionId);
 }
-
 function RecommendationsSkeleton() {
   return (
     <Boundary

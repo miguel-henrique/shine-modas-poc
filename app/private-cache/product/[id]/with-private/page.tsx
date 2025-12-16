@@ -45,8 +45,11 @@ export default async function Page({
   );
 }
 
+
 async function Recommendations({ productId }: { productId: string }) {
-  const recommendations = await getRecommendations(productId);
+  // cookies() deve ser chamado fora de 'use cache'
+  const sessionId = (await cookies()).get('session-id')?.value || 'guest';
+  const recommendations = await getRecommendations(productId, sessionId);
 
   return (
     <Boundary
@@ -73,13 +76,8 @@ async function Recommendations({ productId }: { productId: string }) {
 }
 
 // Private cache - RUNTIME PREFETCHABLE!
-async function getRecommendations(productId: string) {
+async function getRecommendations(productId: string, sessionId: string) {
   'use cache';
-  // TODO: Set cache lifetime if supported by your framework version
-
-  // Can call cookies() inside private cache!
-  const sessionId = (await cookies()).get('session-id')?.value || 'guest';
-
   // Get personalized recommendations
   return getPersonalizedRecommendations(productId, sessionId);
 }

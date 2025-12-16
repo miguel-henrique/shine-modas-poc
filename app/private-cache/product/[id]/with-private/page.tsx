@@ -2,7 +2,6 @@ import { Suspense } from 'react';
 import db from '#/lib/db';
 import { Boundary } from '#/ui/boundary';
 import { ProductCard } from '#/ui/product-card';
-import { cacheLife, cacheTag } from 'next/cache';
 import { cookies } from 'next/headers';
 import { getPersonalizedRecommendations } from '../../../_components/recommendations';
 import { notFound } from 'next/navigation';
@@ -82,9 +81,8 @@ async function Recommendations({ productId }: { productId: string }) {
 
 // Private cache - RUNTIME PREFETCHABLE!
 async function getRecommendations(productId: string) {
-  'use cache: private';
-  cacheTag(`recommendations-${productId}`);
-  cacheLife({ stale: 60 }); // 60s stale time (≥30s required for runtime prefetch)
+  'use cache';
+  // TODO: Set cache lifetime if supported by your framework version
 
   // Can call cookies() inside private cache!
   const sessionId = (await cookies()).get('session-id')?.value || 'guest';
@@ -92,7 +90,6 @@ async function getRecommendations(productId: string) {
   // Get personalized recommendations
   return getPersonalizedRecommendations(productId, sessionId);
 }
-
 function RecommendationsSkeleton() {
   return (
     <Boundary

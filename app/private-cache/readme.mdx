@@ -20,7 +20,7 @@ export const demo = db.demo.find({ where: { slug: 'private-cache' } });
 ```tsx app/private-cache/product/[id]/with-private/page.tsx
 async function getRecommendations(productId: string) {
   // !mark
-  'use cache: private';
+  'use cache';
   cacheTag(`recommendations-${productId}`);
   cacheLife({ stale: 60 });
 
